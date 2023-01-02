@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Birds{
+ - colors
+ - weights
+
+
+ + fly()
+}
+class Parrot implements Birds{
+}
+note " problem :Pengins cannot fly " as N1
+class Pengins implements Birds{
+}
+class sparrow implements Birds{
+}
+
+
+
+
+
+
+
+
+
+@enduml

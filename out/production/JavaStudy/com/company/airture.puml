@@ -1,0 +1,28 @@
+@startuml
+
+!define AzurePuml https://raw.githubusercontent.com/plantuml-stdlib/Azure-PlantUML/release/2-1/dist
+!includeurl AzurePuml/AzureCommon.puml
+!includeurl AzurePuml/Analytics/AzureEventHub.puml
+!includeurl AzurePuml/Analytics/AzureStreamAnalytics.puml
+!includeurl AzurePuml/Databases/AzureCosmosDb.puml
+
+
+top  to bottom  direction
+
+agent "Device Simulator" as devices #fff
+
+AzureEventHub(fareDataEventHub, "", )
+AzureEventHub(tripDataEventHub,"",)
+AzureStreamAnalytics(streamAnalytics, "",)
+
+AzureStorage(Storage,"","")
+AzureSynapseAnalytics(AzureSynapseAnalytics,"",)
+
+
+devices --> fareDataEventHub
+devices --> tripDataEventHub
+fareDataEventHub --> streamAnalytics
+tripDataEventHub -->null
+streamAnalytics --> Storage
+Storage --> AzureSynapseAnalytics
+@enduml
