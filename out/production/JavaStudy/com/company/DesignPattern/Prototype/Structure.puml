@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+interface prototype{
++ clone():ProtoType
+}
+class ConcretePrototype implements prototype {
+- fields
++ concreteprototype(prototype)
++ clone(): prototype
+}
+
+
+class SubclassPrototype extends ConcretePrototype {
+ + fields
+ + SubclassPrototype(prtotype)
+ + clone():prototype
+}
+
+note "The Prototype interface declares\n the cloning methods. \nIn most cases,\n it’s a single clone method." as N1
+note "The Concrete Prototype class implements the cloning method.\nIn addition to copying the original object’s data to the clone,\nthis method may also handle some edge cases\n of the cloning process related to cloning linked objects,\nuntangling recursive dependencies, etc." as 2
+note "The Client can produce a copy of any object\nthat follows the prototype interface." as 3
+
+note " copy=exiting.clone()" as note1
+
+note " this.field1=prototype.field1" as p1
+note " return new ConcreatePrototype(this)" as p2
+note " super(prototype)\n this.field2=prototype.field2" as p3
+note " return new SubclassPrototype(this)" as p4
+
+
+
+prototype ..note1
+prototype .. N1
+ConcretePrototype .. 2
+SubclassPrototype .. 3
+p1 .. ConcretePrototype
+p2 .. ConcretePrototype
+p3 .. SubclassPrototype
+p4 .. SubclassPrototype
+
+@enduml

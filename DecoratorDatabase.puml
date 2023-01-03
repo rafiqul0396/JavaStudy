@@ -1,0 +1,43 @@
+@startuml
+interface com.company.DesignPattern.Decorator.Interface.Database {
++ String read()
++ void write(String)
+}
+class com.company.DesignPattern.Decorator.CompressionDecorator {
+- Database database
++ String read()
+- String Decopress(String)
++ void write(String)
+- String CpomressFile(String)
+}
+class com.company.DesignPattern.Decorator.SimpleDatabase {
++ String read()
++ void write(String)
+}
+class com.company.DesignPattern.Decorator.EncriptionDecorator {
+- Database database
++ String read()
+- String decrept(String)
++ void write(String)
+- String encripted(String)
+}
+class com.company.DesignPattern.Decorator.DataBaseTest {
+- Database database
++ void SetUp()
++ void testBase()
++ void CompressionTest()
++ void EncriptionTest()
++ void compressionEncriptionTest()
+}
+class com.company.DesignPattern.Decorator.Interface.BaseDecorator {
+- Database database
++ String read()
++ void write(String)
+}
+
+
+com.company.DesignPattern.Decorator.Interface.Database <|.. com.company.DesignPattern.Decorator.CompressionDecorator
+com.company.DesignPattern.Decorator.Interface.Database <|.. com.company.DesignPattern.Decorator.SimpleDatabase
+com.company.DesignPattern.Decorator.Interface.Database <|.. com.company.DesignPattern.Decorator.EncriptionDecorator
+com.company.DesignPattern.Decorator.Interface.Database <|.. com.company.DesignPattern.Decorator.Interface.BaseDecorator
+@enduml
