@@ -1,0 +1,49 @@
+@startuml
+enum com.company.DesignPattern.AdaptorPattern.PaymentAdopter.StripeStatus {
++  OK
++  ERROR
+}
+interface com.company.DesignPattern.AdaptorPattern.PaymentAdopter.PaymentProvider {
++ void createPayment(PaymentRequest)
++ PaymentStatus verifyPayment(String)
+}
+class com.company.DesignPattern.AdaptorPattern.PaymentAdopter.RezarpayApi {
++ void makePayments(String,String)
++ RezorpayStuts checkStatus(String)
+}
+class com.company.DesignPattern.AdaptorPattern.PaymentAdopter.external.RezorpayProvider {
+- RezarpayApi api
++ void createPayment(PaymentRequest)
++ PaymentStatus verifyPayment(String)
+- PaymentStatus toStatus(RezorpayStuts)
+}
+class com.company.DesignPattern.AdaptorPattern.PaymentAdopter.StripeApi {
++ void makePayments(String)
++ StripeStatus status(String)
+}
+class com.company.DesignPattern.AdaptorPattern.PaymentAdopter.models.PaymentRequest {
+- String phone
+- String email
+- String name
+}
+enum com.company.DesignPattern.AdaptorPattern.PaymentAdopter.RezorpayStuts {
++  SUCCESS
++  FUILURE
+}
+class com.company.DesignPattern.AdaptorPattern.PaymentAdopter.external.StripeProvider {
+- StripeApi api
++ void createPayment(PaymentRequest)
++ PaymentStatus verifyPayment(String)
+- PaymentStatus toStatus(StripeStatus)
+}
+enum com.company.DesignPattern.AdaptorPattern.PaymentAdopter.models.PaymentStatus {
++  OK
++  ERROR
++  SUCCESS
++  FUILURE
+}
+
+
+com.company.DesignPattern.AdaptorPattern.PaymentAdopter.PaymentProvider <|.. com.company.DesignPattern.AdaptorPattern.PaymentAdopter.external.RezorpayProvider
+com.company.DesignPattern.AdaptorPattern.PaymentAdopter.PaymentProvider <|.. com.company.DesignPattern.AdaptorPattern.PaymentAdopter.external.StripeProvider
+@enduml
